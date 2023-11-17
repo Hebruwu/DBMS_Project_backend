@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint
-from student_blueprint import student_routes
-from admin_blueprint import admin_routes
-from event_blueprint import event_routes
+from .student_blueprint import student_routes
+from .admin_blueprint import admin_routes
+from .event_blueprint import event_routes
  
 app = Flask(__name__)
 app.register_blueprint(student_routes, url_prefix="/eventhosting/students")

@@ -1,7 +1,7 @@
 import traceback
 from flask import Blueprint, Response, jsonify, request
 from dataclasses import asdict
-from database.eventhosting import get_engine, get_student, authenticate_student, insert_student, get_students
+from .database.eventhosting import get_engine, get_student, authenticate_student, insert_student, get_students
 
 student_routes = Blueprint('student_routes', __name__)
 

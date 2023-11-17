@@ -1,7 +1,7 @@
 import traceback
 from flask import Blueprint, Response, jsonify, request
 from dataclasses import asdict
-from database.eventhosting import get_engine, get_admin, authenticate_admin
+from .database.eventhosting import get_engine, get_admin, authenticate_admin
 
 admin_routes = Blueprint('admin_routes', __name__)
 

@@ -3,7 +3,7 @@ from flask import Blueprint, Response, jsonify, request
 from dataclasses import asdict
 import dateutil.parser, dateutil.tz
 
-from database.eventhosting import get_engine, get_feedback, insert_event, get_events, insert_invite, update_invite, insert_feedback, get_invites
+from .database.eventhosting import get_engine, get_feedback, insert_event, get_events, insert_invite, update_invite, insert_feedback, get_invites
 
 event_routes = Blueprint('event_routes', __name__)
 
