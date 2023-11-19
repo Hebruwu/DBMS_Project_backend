@@ -16,7 +16,7 @@ def get_admin_details(username: str) -> Response:
     except Exception as e:
         return jsonify(error=traceback.format_exc()),500
 
-@admin_routes.route("authenticate", methods=["GET"])
+@admin_routes.route("authenticate", methods=["POST"])
 def authenitcate() -> Response:
     try:
         engine = get_engine()

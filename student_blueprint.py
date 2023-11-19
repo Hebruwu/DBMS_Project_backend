@@ -16,7 +16,7 @@ def get_student_details(username: str) -> Response:
     except Exception as e:
         return jsonify(error=traceback.format_exc()),500
 
-@student_routes.route("/students_details", methods = ["GET"])
+@student_routes.route("/students_details", methods = ["POST"])
 def get_students_details() -> Response:
     try:
         engine = get_engine()
@@ -36,7 +36,7 @@ def get_students_details() -> Response:
     
         
     
-@student_routes.route("authenticate", methods=["GET"])
+@student_routes.route("authenticate", methods=["POST"])
 def authenitcate() -> Response:
     try:
         engine = get_engine()
