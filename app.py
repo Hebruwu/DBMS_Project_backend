@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint
+from flask_cors import CORS
 from .student_blueprint import student_routes
 from .admin_blueprint import admin_routes
 from .event_blueprint import event_routes
@@ -7,6 +8,7 @@ app = Flask(__name__)
 app.register_blueprint(student_routes, url_prefix="/eventhosting/students")
 app.register_blueprint(admin_routes, url_prefix="/eventhosting/admins")
 app.register_blueprint(event_routes, url_prefix="/eventhosting/events")
+CORS(app)
  
 @app.route('/')
 def hello_world():
