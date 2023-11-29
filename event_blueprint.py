@@ -1,10 +1,12 @@
 import traceback
+from typing import Tuple
+
 from flask import Blueprint, Response, jsonify, request
 from dataclasses import asdict
 import dateutil.parser, dateutil.tz
 
 from .database.eventhosting import get_engine, get_feedback, insert_event, get_events, \
-    insert_invite, update_invite, insert_feedback, get_invites
+    insert_invite, update_invite, insert_feedback, get_invites, get_students
 
 event_routes = Blueprint('event_routes', __name__)
 
@@ -43,17 +45,27 @@ def get_events_details() -> Response:
 
 
 @event_routes.route("create/invite", methods=["POST"])
-def create_event_invite() -> Response:
+def create_event_invite() -> Tuple[Response, int]:
     try:
         engine = get_engine()
         create_args = request.json
+        students = get_students(engine,
+                                create_args.get("majors", ["%"]),
+                                create_args.get("citizenships", ["%"]),
+                                create_args.get("races", ["%"]),
+                                create_args.get("genders", ["%"]))
+
+        sids = [student.SID for student in students]
         insert_invite(engine,
-                      None,
                       create_args["eid"],
-                      create_args["sid"])
+                      sids)
+
     except Exception as e:
         return jsonify(error=traceback.format_exc()), 400
-    return "Success", 200
+
+    response = jsonify("Success")
+    # Don't know if we need to specify CORS header here. Left as is for now.
+    return response, 200
 
 
 @event_routes.route("create/feedback", methods=["POST"])
