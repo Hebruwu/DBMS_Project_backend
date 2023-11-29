@@ -103,7 +103,7 @@ HTTP 200 OK
 Failure
 HTTP 400 BAD REQUEST
 
-5) Create Student
+6) Create Student
 
 POST http://127.0.0.1:5000/eventhosting/students/create
 
@@ -133,7 +133,7 @@ HTTP 200 OK
 Failure
 HTTP 400 BAD REQUEST
 
-6) Get Several Students Details Based On Filters
+7) Get Several Students Details Based On Filters
 
 GET http://127.0.0.1:5000/eventhosting/students/students_details
 
@@ -193,7 +193,7 @@ Response:
 ```
 HTTP 200 OK for Success else HTTP 400
 
-7) Get list of events
+8) Get list of events
 
 GET http://127.0.0.1:5000/eventhosting/events/events_details
 
@@ -239,7 +239,7 @@ Response:
 
 HTTP 200 if Success else HTTP 400
 
-8) Create An Invite
+9) Create An Invite
 
 POST http://127.0.0.1:5000/eventhosting/events/create/invite
 headers: 
@@ -249,14 +249,17 @@ Example Body:
 
 ```
 {
-    "eid": 4,
-    "sid": 1
+    "majors": ["CS", "CMDA"],
+    "citizenship": ["Int."],
+    "races": ["Asian"],
+    "genders": ["F"],
+    "eid": 1
 }
 ```
 
 HTTP 200 if Success else HTTP 400
 
-9) Add Attending Details To An Invite
+10) Add Attending Details To An Invite
 
 PUT http://127.0.0.1:5000/eventhosting/events/modify/invite
 headers: 
@@ -274,7 +277,7 @@ Example Body:
 
 HTTP 200 if Success else HTTP 400
 
-10) Add Event Feedback
+11) Add Event Feedback
 
 POST http://127.0.0.1:5000/eventhosting/events/create/feedback
 headers: 
@@ -292,7 +295,7 @@ Example Body:
 
 HTTP 200 if Success else HTTP 400
 
-11) Get Invites And Associated Events for username judith77
+12) Get Invites And Associated Events for username judith77
 
 GET http://127.0.0.1:5000/eventhosting/events/invites/judith77
 
@@ -323,7 +326,7 @@ Response:
 
 HTTP 200 if Success else HTTP 400
 
-12) Get students and associated feedback for an event having eid 4
+13) Get students and associated feedback for an event having eid 4
 
 GET http://127.0.0.1:5000/eventhosting/events/feedback/4
 
