@@ -26,7 +26,7 @@ def insert_event(engine,
                  q_modality: str,
                  q_location: str,
                  q_E_AID: int,
-                 q_description: Optional[str]) -> None:
+                 q_description: Optional[str]) -> int:
     event = EVENT(NAME=q_name,
                   DATE_FROM=q_date_from,
                   DATE_TO=q_date_to,
@@ -40,6 +40,8 @@ def insert_event(engine,
         try:
             session.add(event)
             session.commit()
+            session.refresh(event)
+            return event.EID
         except Exception as e:
             raise DBException("Occured at event insert\n", e)
 

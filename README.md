@@ -98,8 +98,10 @@ Body:
 ```
 
 Response:
-Success
-HTTP 200 OK
+{
+    "eid": 14
+}
+200
 Failure
 HTTP 400 BAD REQUEST
 

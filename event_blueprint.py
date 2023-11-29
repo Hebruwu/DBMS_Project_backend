@@ -20,17 +20,17 @@ def create_event() -> Response:
                                                          ignoretz=False)
         create_args["date_to"] = dateutil.parser.parse(create_args["date_to"],
                                                        ignoretz=False)
-        insert_event(engine, create_args["name"],
+        response = {"eid": insert_event(engine, create_args["name"],
                      create_args["date_from"],
                      create_args["date_to"],
                      create_args["type"],
                      create_args["modality"],
                      create_args["location"],
                      create_args["aid"],
-                     create_args.get("description"))
+                     create_args.get("description")) }
     except Exception as e:
         return jsonify(error=traceback.format_exc()), 400
-    return "Success", 200
+    return response, 200
 
 
 @event_routes.route("events_details", methods=["GET"])
